@@ -128,7 +128,7 @@
     </footer>
 
     <script>
-        // Simple slideshow functionality
+        // Slideshow functionality
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.slide');
             let currentSlide = 0;
@@ -139,19 +139,13 @@
                 slides[currentSlide].classList.add('active');
             }
             
-            // Auto-advance slides every 5 seconds
             setInterval(() => {
                 showSlide(currentSlide + 1);
             }, 5000);
-            
-            // You could add manual navigation controls here if desired
         });
     </script>
 
-    <!--<script src="src/main.js"></script>
-    <script src="src/viewTable.js"></script>
-    <script src="src/viewProducts.js"></script>
-    <script src="Main.js"></script>
-    <script src="viewTable.js"></script>-->
+    <script src="src/main.js"></script>
+    
 </body>
 </html>
