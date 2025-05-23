@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMS</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Inventory Management System</h1>
+            <p>Track and manage your business inventory</p>
+        </div>
+    </header>
+
+    
+    <div class="container">
+        <div class="slideshow">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="slide-content">
+                    <h2>Real-time Inventory Tracking</h2>
+                    <p>Monitor stock levels across multiple locations with our live dashboard and automated alerts.</p>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="slide-content">
+                    <h2>Seamless Integration</h2>
+                    <p>Connect with your existing eCommerce platforms, accounting software, and POS systems.</p>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1434626881859-194d67b2b86f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="slide-content">
+                    <h2>Advanced Reporting</h2>
+                    <p>Generate detailed reports to analyze sales trends, inventory turnover, and forecasting.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-redirect">
+            Click <a href="menu.html">here</a> to view a list of actions available on this website
+        </div>
+
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    This inventory system transformed our warehouse operations. We reduced stock discrepancies by 90% in the first month alone.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Operations Manager, RetailChain</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    The mobile app allows me to check stock levels and place orders from anywhere. It's been a game-changer for our business.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Michael Chen</h4>
+                        <p>Owner, Boutique Fashions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    Implementation was smooth and the support team was fantastic. We're saving 15 hours per week on inventory tasks.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Emily Rodriguez</h4>
+                        <p>CEO, Gourmet Foods Inc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Inventory System</h3>
+                <p>Powerful inventory management for businesses of all sizes. Streamline your operations and gain real-time visibility.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Demo</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Features</h3>
+                <ul>
+                    <li><a href="#">Inventory Tracking</a></li>
+                    <li><a href="#">Barcode Scanning</a></li>
+                    <li><a href="#">Reporting</a></li>
+                    <li><a href="#">Multi-location</a></li>
+                    <li><a href="#">Mobile App</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 400</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@inventorysys.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Inventory Management System. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Simple slideshow functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            
+            function showSlide(n) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            // Auto-advance slides every 5 seconds
+            setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
+            
+            // You could add manual navigation controls here if desired
+        });
+    </script>
+
+    <!--<script src="src/main.js"></script>
+    <script src="src/viewTable.js"></script>
+    <script src="src/viewProducts.js"></script>
+    <script src="Main.js"></script>
+    <script src="viewTable.js"></script>-->
+</body>
+</html>
