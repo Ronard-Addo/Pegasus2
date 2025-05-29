@@ -22,7 +22,7 @@ jobs:
           echo "export const SUPABASE_CONFIG = {
             url: '$SUPABASE_URL',
             key: '$SUPABASE_KEY'
-          };" > src/config.js
+          };" > config.js
 
       # 3. Install and build (example for Node.js)
       - name: Install and build
