@@ -1,17 +1,12 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-//import { SUPABASE_CONFIG } from './config.js';
+import { SUPABASE_CONFIG } from './config.js';
 
 import { displayInventoryTable } from './viewTable.js';
 import { displayProducts } from './viewProducts.js';
 import { loadUpdateTableForm } from './updateTable.js';
 import { loadCreateTableForm } from './createTable.js';
 
-const supabaseUrl = 'https://ddgwwrjsnlaqlwhkthhr.supabase.co';
-
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZ3d3cmpzbmxhcWx3aGt0aGhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxOTc2MTEsImV4cCI6MjA2Mzc3MzYxMX0.27mI8Eg6TAUq_qEfHOOcMKj3tI65G1RJvvPq5PzweBo';
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
-//export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
+export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
 
 // Test 2
 document.getElementById('submit-selection').addEventListener('click', (e) => {
