@@ -19,11 +19,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
-          echo "// Auto-generated - Do not commit
-          export const SUPABASE_CONFIG = {
-            url: '$SUPABASE_URL',
-            key: '$SUPABASE_KEY'
-          };" > config.js
+          sed "s|YOUR_SUPABASE_URL|$SUPABASE_URL|g; s|YOUR_SUPABASE_KEY|$SUPABASE_KEY|g" config.template.js > config.js
 
           # Verify file creation (debugging)
           echo "Config file content:"
