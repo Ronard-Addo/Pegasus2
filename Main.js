@@ -6,10 +6,8 @@ import { displayProducts } from './viewProducts.js';
 import { loadUpdateTableForm } from './updateTable.js';
 import { loadCreateTableForm } from './createTable.js';
 
-console.log("url: ", CONFIG.url); // Supabase URL
-console.log("key: ", CONFIG.key); // Supabase Key
-
-export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
+console.log(CONFIG);
+export const supabase = createClient(CONFIG.url, CONFIG.key);
 
 // Test 2
 document.getElementById('submit-selection').addEventListener('click', (e) => {
@@ -51,8 +49,6 @@ function handleSelection() {
 // ======================
 // TABLE SELECTION FUNCTIONS
 // ======================
-
-
 export function loadTableInputForm() {
     localStorage.setItem('currentView', 'tableInputForm');  
 
