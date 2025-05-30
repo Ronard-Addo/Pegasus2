@@ -9,24 +9,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
-      - name: Checkout repository
+      # 1. Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Create config file in root (not /dist)
-      - name: Create Supabase config
+      # 2. Create config file with secrets
+      - name: Generate Supabase config
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
-          echo "export const SUPABASE_CONFIG = {
+          echo "// Auto-generated - Do not commit
+          export const SUPABASE_CONFIG = {
             url: '$SUPABASE_URL',
             key: '$SUPABASE_KEY'
           };" > config.js
 
-      # 3. Deploy entire repo (or specific folder)
+          # Verify file creation (debugging)
+          echo "Config file content:"
+          cat config.js
+
+      # 3. Verify directory structure
+      - name: List files
+        run: ls -la
+
+      # 4. Deploy to GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Deploys root folder (or use ./dist if you have one)
+          publish_dir: ./  # Deploys root directory
+          keep_files: true  # Preserves existing files in gh-pages
+          force_orphan: true  # Ensures clean deployment
