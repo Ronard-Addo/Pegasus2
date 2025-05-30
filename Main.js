@@ -1,15 +1,12 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import { SUPABASE_CONFIG } from './config.js';
 
 import { displayInventoryTable } from './viewTable.js';
 import { displayProducts } from './viewProducts.js';
 import { loadUpdateTableForm } from './updateTable.js';
 import { loadCreateTableForm } from './createTable.js';
 
-    const supabaseUrl = 'https://ddgwwrjsnlaqlwhkthhr.supabase.co';
-
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZ3d3cmpzbmxhcWx3aGt0aGhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxOTc2MTEsImV4cCI6MjA2Mzc3MzYxMX0.27mI8Eg6TAUq_qEfHOOcMKj3tI65G1RJvvPq5PzweBo';
-
-    export const supabase = createClient(supabaseUrl, supabaseKey);
+    export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
 
     
   
@@ -19,8 +16,7 @@ document.getElementById('submit-selection').addEventListener('click', (e) => {
 });
 
 export function loadInitialForm() {
-    // Reload the tab with cache busting
-    window.location.reload(true); // The 'true' forces a hard reload
+    window.location.reload(true); 
 }
 
 function handleSelection() {
@@ -49,19 +45,6 @@ function handleSelection() {
         statSelectionForm();
     }
 }
-
-/*function testPageLoad() {
-
-  const contentDiv = document.getElementById('dynamic-content');
-
-    if (!contentDiv) {
-        console.error("Element with id 'dynamic-content' not found.");
-        return;
-    }
-
-  contentDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-
-}*/
 
 // ======================
 // TABLE SELECTION FUNCTIONS
@@ -200,20 +183,6 @@ async function displayTableNames(data) {
       contentDiv.innerHTML = '<p>No tables found in the database.</p>';
     }
 
-    /*let optionsHTML = '';
-    tables.forEach(table => {
-        optionsHTML += `
-            <div class="table-option">
-                <label>
-                    <input type="radio" name="table-radio" value="${table.table_name}" required>
-                    ${table.name} (Rows: ${table.num_rows})
-                </label>
-            </div>
-        `;
-    });
-    
-    contentDiv.innerHTML = optionsHTML;*/
-    
     localStorage.removeItem('location');
 
     
