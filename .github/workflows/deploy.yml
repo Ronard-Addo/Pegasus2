@@ -1,39 +1,27 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      # 2. Create config file with secrets
-      - name: Generate Supabase config
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      - name: Inject secrets into ES module
         run: |
-          sed "s|YOUR_SUPABASE_URL|$SUPABASE_URL|g; s|YOUR_SUPABASE_KEY|$SUPABASE_KEY|g" config.template.js > config.js
+          echo "export const CONFIG = {" > public/config.js
+          echo "  API_KEY_1: '${{ secrets.API_KEY_1 }}'," >> public/config.js
+          echo "  API_KEY_2: '${{ secrets.API_KEY_2 }}'" >> public/config.js
+          echo "};" >> public/config.js
 
-          # Verify file creation (debugging)
-          echo "Config file content:"
-          cat config.js
-
-      # 3. Verify directory structure
-      - name: List files
-        run: ls -la
-
-      # 4. Deploy to GitHub Pages
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Deploys root directory
-          keep_files: true  # Preserves existing files in gh-pages
-          force_orphan: true  # Ensures clean deployment
+          publish_dir: ./public
