@@ -8,7 +8,7 @@ import { loadCreateTableForm } from './createTable.js';
 
 export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
 
-// Test 1
+// Test 2
 document.getElementById('submit-selection').addEventListener('click', (e) => {
     e.preventDefault();
     handleSelection();
