@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <!--<script src="https://cdn.sheetjs.com/xlsx/package/dist/xlsx.full.min.js"></script>-->
+    
+<!--<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>-->
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Inventory Management System</h1>
+            <p>Track and manage your product inventory</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="dynamic-content">
+            <form id="selection-form" onsubmit="return false">
+            <h2>Please select one of the following options</h2>
+            <div class="initial-form">
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="option" value="viewTable" checked>
+                        View an entire inventory table
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="option" value="viewProductInformation">
+                        View inventory information of specific products
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="option" value="updateProduct">
+                        Update information of an existing product
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="option" value="updateTable">
+                        Update an existing table by uploading an excel file
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="option" value="createTable">
+                        Create a new table by uploading an excel file
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="option" value="stats">
+                        View important insights about your inventory
+                    </label>
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="button" id="submit-selection" class="btn">Continue</button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <script type="module" src="Main.js"></script>
+
+    
+</body>
+</html>
