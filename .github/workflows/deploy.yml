@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -13,15 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Inject secrets into ES module
+      - name: Inject Supabase secrets into config.js ES module
         run: |
           echo "export const CONFIG = {" > config.js
           echo "  url: '${{ secrets.SUPABASE_URL }}'," >> config.js
           echo "  key: '${{ secrets.SUPABASE_KEY }}'" >> config.js
           echo "};" >> config.js
 
+      - name: List files before deployment (debugging)
+        run: ls -al
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+          add: true
