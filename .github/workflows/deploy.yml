@@ -15,9 +15,9 @@ jobs:
 
       - name: Inject secrets into ES module
         run: |
-          echo "export const CONFIG = {" > public/config.js
-          echo "  API_KEY_1: '${{ secrets.API_KEY_1 }}'," >> public/config.js
-          echo "  API_KEY_2: '${{ secrets.API_KEY_2 }}'" >> public/config.js
+          echo "export const CONFIG = {" > config.js
+          echo "  url: '${{ secrets.SUPABASE_URL }}'," >> config.js
+          echo "  key: '${{ secrets.SUPABASE_KEY }}'" >> config.js
           echo "};" >> public/config.js
 
       - name: Deploy to GitHub Pages
