@@ -6,10 +6,9 @@ import { displayProducts } from './viewProducts.js';
 import { loadUpdateTableForm } from './updateTable.js';
 import { loadCreateTableForm } from './createTable.js';
 
-    export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
+export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
 
-    
-  
+// Test 1
 document.getElementById('submit-selection').addEventListener('click', (e) => {
     e.preventDefault();
     handleSelection();
