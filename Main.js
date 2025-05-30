@@ -1,10 +1,13 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-import { SUPABASE_CONFIG } from './config.js';
+import { CONFIG } from './config.js';
 
 import { displayInventoryTable } from './viewTable.js';
 import { displayProducts } from './viewProducts.js';
 import { loadUpdateTableForm } from './updateTable.js';
 import { loadCreateTableForm } from './createTable.js';
+
+console.log("url: ", CONFIG.url); // Supabase URL
+console.log("key: ", CONFIG.key); // Supabase Key
 
 export const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
 
