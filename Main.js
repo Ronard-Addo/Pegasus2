@@ -1,13 +1,15 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-import { CONFIG } from './config.js';
 
 import { displayInventoryTable } from './viewTable.js';
 import { displayProducts } from './viewProducts.js';
 import { loadUpdateTableForm } from './updateTable.js';
 import { loadCreateTableForm } from './createTable.js';
 
-console.log(CONFIG);
-export const supabase = createClient(CONFIG.url, CONFIG.key);
+const supabaseUrl = 'https://ddgwwrjsnlaqlwhkthhr.supabase.co';
+
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZ3d3cmpzbmxhcWx3aGt0aGhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxOTc2MTEsImV4cCI6MjA2Mzc3MzYxMX0.27mI8Eg6TAUq_qEfHOOcMKj3tI65G1RJvvPq5PzweBo';
+    
+    export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Test 2
 document.getElementById('submit-selection').addEventListener('click', (e) => {
@@ -157,8 +159,6 @@ async function displayTableNames(data) {
     
     console.log("location: ", destination);
 
-    //await delay(20000);
-    
     const contentDiv = document.getElementById("table-list-section");
 
     if (!contentDiv) {
@@ -252,9 +252,6 @@ function loadTableResultsPage(tableName) {
 function handleActionMap(selected) {
     console.log("handleActionMap function invoked");
 
-    //const sentData = {tableName: selected, test: "test"};
-
-    //console.log(sentData);
     const selectedOption = localStorage.getItem('selectedOption');
     
     switch(selectedOption) {
