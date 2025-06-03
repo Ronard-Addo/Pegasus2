@@ -5,20 +5,22 @@ import { displayProducts } from './viewProducts.js';
 import { loadUpdateTableForm } from './updateTable.js';
 import { loadCreateTableForm } from './createTable.js';
 
-const supabaseUrl = 'https://ddgwwrjsnlaqlwhkthhr.supabase.co';
+    const supabaseUrl = 'https://ddgwwrjsnlaqlwhkthhr.supabase.co';
 
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZ3d3cmpzbmxhcWx3aGt0aGhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxOTc2MTEsImV4cCI6MjA2Mzc3MzYxMX0.27mI8Eg6TAUq_qEfHOOcMKj3tI65G1RJvvPq5PzweBo';
     
     export const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Test 2
+    
+  
 document.getElementById('submit-selection').addEventListener('click', (e) => {
     e.preventDefault();
     handleSelection();
 });
 
 export function loadInitialForm() {
-    window.location.reload(true); 
+    // Reload the tab with cache busting
+    window.location.reload(true); // The 'true' forces a hard reload
 }
 
 function handleSelection() {
@@ -51,6 +53,8 @@ function handleSelection() {
 // ======================
 // TABLE SELECTION FUNCTIONS
 // ======================
+
+
 export function loadTableInputForm() {
     localStorage.setItem('currentView', 'tableInputForm');  
 
@@ -159,6 +163,8 @@ async function displayTableNames(data) {
     
     console.log("location: ", destination);
 
+    //await delay(20000);
+    
     const contentDiv = document.getElementById("table-list-section");
 
     if (!contentDiv) {
@@ -252,6 +258,9 @@ function loadTableResultsPage(tableName) {
 function handleActionMap(selected) {
     console.log("handleActionMap function invoked");
 
+    //const sentData = {tableName: selected, test: "test"};
+
+    //console.log(sentData);
     const selectedOption = localStorage.getItem('selectedOption');
     
     switch(selectedOption) {
@@ -289,7 +298,9 @@ export async function fetchData(procedure, handler, params = {}) {
       result = data;
 
     console.log('Returned data:', result);
-    handler(result);
+    
+    if(!result) contentDiv.innerHTML = `<p class="error">No data returned</p>`;
+    else handler(result);
 
   } catch (error) {
     console.error('Error fetching table names:', error);

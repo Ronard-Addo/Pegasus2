@@ -1,6 +1,6 @@
 import { loadTableInputForm } from './Main.js';
 import { displayInventoryTable } from './viewTable.js';
-import { loadUpdateProductForm } from './updateProducts.js';
+import { loadColumnSelectionForm } from './updateProducts.js';
 
 // ======================
 // PRODUCT FUNCTIONS
@@ -33,17 +33,6 @@ export function displayProducts(products) {
       contentDiv.innerHTML = '<p>No tables found in the database.</p>';
     }
 
-    /*products.forEach(product => {
-        formHTML += `
-            <div class="product-item">
-                <label>
-                    <input type="checkbox" name="product_ids[]" value="${product.product_id}">
-                    ${product.product_name} (ID: ${product.product_id})
-                </label>
-            </div>
-        `;
-    });*/
-    
     formHTML += `
             </div>
             <div class="button-container">
@@ -90,6 +79,6 @@ function handleProductSelection(products) {
     if (selectedOption === "viewProductInformation") {
         displayInventoryTable(selectedProducts);
     } else if (selectedOption === "updateProduct") {
-        loadUpdateProductForm(selectedProducts);
+        loadColumnSelectionForm(selectedProducts);
     }
 }

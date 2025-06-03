@@ -42,10 +42,61 @@ body {
     overflow-x: auto;
     position: relative;
     margin: 2rem auto;
-    width: 600px;
+    width: 665px;
     height: 480px;
     font-size: 20px;
 }
+
+
+/* Start of general form element styles*/
+    
+    h2, h3 {
+        color: #333;
+        text-align: center;
+    }
+
+    h2 {
+        margin: 0 0 18px 0;
+    }
+
+    h3 {
+        margin: 0 0 15px 0;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 22px;
+        font-size: 23px;
+        cursor: pointer;
+    }
+
+    input[type="radio"] {
+        margin-right: 11px;
+        width: 15px;
+        height: 15px;
+    }
+
+    input[type="text"] {
+        width: 80%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type="checkbox"] {
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+    }  
+
+/* End of general form element styles*/
+
 
 /* Table Styles with Stationary Headers */
 .table-container {
@@ -92,6 +143,8 @@ body {
 }
 
 
+
+
 /* Start of table-input-form styles*/
 .table-selection-section {
     margin: 0 0 15px 0;
@@ -121,10 +174,6 @@ body {
     margin: 0 0 0 28px;
 }
 
-.text-input-section {
-    /*display: none !important;*/
-}
-
 .text-input-field {
     width: 80%;
 }
@@ -133,10 +182,6 @@ body {
 
 
 /* Start of product-list styles*/
-#product-selction-form {
-
-}
-
 .product-list {
     margin: 0 0 0 148px;
 }
@@ -164,42 +209,17 @@ input[type="number"] {
     justify-content: center;
 }*/
 
+/* Start of column-list styles*/
+    .column-list {
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 15px;
+    }
 
-h2, h3 {
-    color: #333;
-    text-align: center;
-}
+/* End of column-list styles*/
 
-h2 {
-    margin: 0 0 18px 0;
-}
 
-h3 {
-    margin: 0 0 15px 0;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    cursor: pointer;
-}
-
-input[type="radio"] {
-    margin-right: 10px;
-}
-
-input[type="text"] {
-    width: 80%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
 
 
 /* Style for button container */
@@ -253,10 +273,6 @@ input[type="text"] {
 /* Update Product Form */
 #update-product-form .h2 {
     text-align: center;
-}
-
-.amount-sold-section {
-    /*margin-top: 15px;*/
 }
 
 #amount-sold {
