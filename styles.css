@@ -30,20 +30,20 @@ body {
     width: 100%;
     margin: 20px auto;
     padding: 0 20px;
-    box-sizing: border-box; /* Include padding in width calculation */
-    min-height: 100%; /* Ensure it takes full height when needed */
+    box-sizing: border-box;
+    min-height: 100%;
 }
 
 #dynamic-content {
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 1.5rem;
+    padding: 50px;
     overflow-x: auto;
     position: relative;
     margin: 2rem auto;
     width: 665px;
-    height: 480px;
+    height: 420px;
     font-size: 20px;
 }
 
@@ -70,9 +70,15 @@ body {
     label {
         display: flex;
         align-items: center;
-        margin-bottom: 22px;
+        margin-bottom: 5px;
         font-size: 23px;
         cursor: pointer;
+    }
+
+    select {
+        width: 470px;
+        height: 192px;
+        font-size: 21px;
     }
 
     input[type="radio"] {
@@ -93,12 +99,31 @@ body {
         margin-right: 8px;
         width: 18px;
         height: 18px;
+    }
+
+    /* TODO: Make this div determine the margin between the upper form elements and button container below*/
+    .main-section {
+
+    }
+
+
+    /* TODO: Replace '#table-selection-form' with just 'form' later */
+    #table-selection-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }  
 
 /* End of general form element styles*/
 
 
 /* Table Styles with Stationary Headers */
+.tableTitle {
+    text-align: center;
+}
+
 .table-container {
     overflow-x: auto;
     max-width: 100%;
@@ -144,43 +169,6 @@ body {
 
 
 
-
-/* Start of table-input-form styles*/
-.table-selection-section {
-    margin: 0 0 15px 0;
-}
-
-.table-input-section {
-    margin: 0 0 0 100px;
-}
-
-.table-list-section {
-    margin: 0 0 40px 25px;
-}
-
-.table-selection {
-    margin: 0px 0 0 148px;;
-}
-
-#table-text-label {
-    margin-bottom: 4px;
-}
-
-#table-text-input-section label {
-    margin: 0 0 9px 29px;
-}
-
-#table-text-input-section input[type="text"] {
-    margin: 0 0 0 28px;
-}
-
-.text-input-field {
-    width: 80%;
-}
-/* End of  of table-input-form styles*/
-
-
-
 /* Start of product-list styles*/
 .product-list {
     margin: 0 0 0 148px;
@@ -201,14 +189,6 @@ input[type="number"] {
     height: 28px;
 }
 
-/*form {
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}*/
-
 /* Start of column-list styles*/
     .column-list {
         max-height: 200px;
@@ -218,7 +198,6 @@ input[type="number"] {
     }
 
 /* End of column-list styles*/
-
 
 
 
@@ -457,6 +436,3 @@ input[type="number"] {
         grid-template-columns: 1fr;
     }
 }
-
-
-

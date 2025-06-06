@@ -1,12 +1,12 @@
 import { fetchData } from './Main.js';
-import { supabase } from './Main.js';
+//import { supabase } from './Main.js';
 import { displayProducts } from './viewProducts.js';
 import { displayInventoryTable } from './viewTable.js';
 
 // ======================
 // UPDATE PRODUCT FUNCTIONS
 // ======================
-async function fetchColumns(procedure, params) {
+/*async function fetchColumns(procedure, params) {
     const contentDiv = document.getElementById('dynamic-content');
 
     if (!contentDiv) {
@@ -24,7 +24,7 @@ async function fetchColumns(procedure, params) {
         contentDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
         throw error; // Re-throw to allow handling in calling function
     }
-}
+}*/
 
 export async function loadColumnSelectionForm(products) {
     const contentDiv = document.getElementById('dynamic-content');
@@ -39,7 +39,7 @@ export async function loadColumnSelectionForm(products) {
     const tableName = localStorage.getItem('tableName');
     
     try {
-        const columns = await fetchColumns('get_colnames', {target_table: tableName});
+        const columns = await fetchData('get_colnames', null, {target_table: tableName});
         
         if (!Array.isArray(columns)) {
             throw new Error('Columns data is not in expected format');

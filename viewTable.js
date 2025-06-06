@@ -3,6 +3,30 @@ import { addBackButton } from './Main.js';
 // ======================
 // VIEW TABLE FUNCTIONS
 // ======================
+function getTableTitle() {
+
+    const tableName = localStorage.getItem('tableName');
+
+    let msg;
+
+    const selected = localStorage.getItem('selectedOption');
+
+    switch(selected) {
+        case "updateTable":
+            msg = "The table '" + tableName + "' was updated successfully";
+            break;
+        
+        case "createTable":
+            msg = "The table '" + tableName + "' was created successfully";
+            break;
+
+        default:
+            msg = "Displaying data from the selected table '" + tableName + "'";
+    }
+
+    return msg;
+}
+
 export function displayInventoryTable(inventoryData) {
     localStorage.setItem('tableData', JSON.stringify(inventoryData));
 
@@ -19,8 +43,10 @@ export function displayInventoryTable(inventoryData) {
     const columns = Object.keys(inventoryData[0]);
     
     let tableHTML = `
+        <div id="page-container"> 
         <h2>Inventory Overview</h2>
-        <div class="table-container">          
+        <div class="main-section">          
+            <p class="tableTitle">${getTableTitle()}</p>
             <table class="product-table">
                 <tr>
                     ${columns.map(col => `<th>${formatColumnName(col)}</th>`).join('')}
@@ -37,12 +63,13 @@ export function displayInventoryTable(inventoryData) {
         <div class="button-container">
             <button type="button" id="back-button" class="btn back-btn">Back to Main Menu</button>
         </div>
+        </div>
     `;
     
     contentDiv.innerHTML = tableHTML;
     
     document.getElementById('back-button').addEventListener('click', () => {
-        localStorage.removeItem('currentView'); // Clear state
+        localStorage.removeItem('currentView'); 
         loadInitialForm();
     });
 }

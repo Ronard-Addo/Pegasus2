@@ -1,8 +1,7 @@
 
 import { loadInitialForm } from './Main.js';
 import { fetchData } from './Main.js';
-import { displayInventoryTable } from './viewTable.js';
-import { supabase } from './Main.js';
+import { postFileUpload } from './Main.js';
 
 import * as XLSX from "https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs";
 
@@ -40,20 +39,41 @@ export function loadUpdateTableForm() {
 }
 
 
-async function handleFileUpload() {
-    const fileInput = document.getElementById('excelFile');
-    const messageDiv = document.getElementById('upload-message');
-    const tableName = localStorage.getItem('tableName');
+export async function handleFileUpload() {
     
+    const fileInput = document.getElementById('excelFile');
+
     if (!fileInput.files.length) {
         messageDiv.innerHTML = '<p class="error">Please select an Excel file</p>';
         return;
     }
-    
+
+    const messageDiv = document.getElementById('upload-message');
+
+    const selected = localStorage.getItem('selectedOption');
+
+    let tableName;
+
+    if (selected === 'updateTable') {
+        tableName = localStorage.getItem('tableName');
+    } else if (selected === 'createTable') {
+        tableName = document.getElementById('newTableName').value.trim();
+        localStorage.setItem('tableName', tableName);
+    }
+
+    console.log("Table name: ", tableName);
+
+    if (!tableName) {
+        messageDiv.innerHTML = '<div class="error">Please enter a table name</div>';
+        return;
+    } else if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(tableName)) {
+        messageDiv.innerHTML = '<div class="error">Invalid table name. Only letters, numbers and underscores are allowed, starting with a letter</div>';
+        return;
+    }
+
     messageDiv.innerHTML = '<div class="loading-spinner">Processing file...</div>';
     
     try {
-        // 1. Read Excel file
         const file = fileInput.files[0];
         const data = await file.arrayBuffer();
         const workbook = XLSX.read(data);
@@ -62,26 +82,33 @@ async function handleFileUpload() {
         
         console.log("jsonData: ", jsonData);
 
-        // 2. Send to Supabase
-        const { data: result, error } = await supabase.rpc('update_table', {
-            target_table: tableName,
-            excel_data: jsonData
-        });
-        
-        if (error) throw error;
-        
-        // 3. Show success
-        messageDiv.innerHTML = `
-            <div class="success-message">
-                <p>Table "${tableName}" created successfully!</p>
-                <p>Columns: ${result.columns.join(', ')}</p>
-                <p>Rows inserted: ${result.row_count}</p>
-            </div>
-        `;
-        
-        // 4. Refresh table display
-        displayInventoryTable(await getTableData(tableName));
-        
+        if (!jsonData || jsonData.length === 0) {
+            alert("Uploaded Excel file does not contain any data");
+            return;
+        }
+
+        let valid = false;
+
+        const keys = Object.keys(jsonData[0]);       
+
+        for (const key of keys) {
+            if (key === 'id') {
+                valid = true;
+                break;
+            }
+        }
+
+        if (!valid) {
+            alert("Uploaded Excel file must contain an 'id' column");
+            return;
+        }
+
+        if (selected === 'updateTable') {
+            fetchData('update_table', postFileUpload, {target_table: tableName, excel_data: jsonData});
+        } else if (selected === 'createTable') {
+            fetchData('create_table', postFileUpload, {target_table: tableName, excel_data: jsonData});
+        }
+
     } catch (error) {
         console.error('Upload failed:', error);
         messageDiv.innerHTML = `
@@ -90,33 +117,3 @@ async function handleFileUpload() {
         `;
     }
 }
-
-// Helper function to get table data
-async function getTableData(tableName) {
-    const { data, error } = await supabase.rpc('get_table_data', {
-        target_table: tableName
-    });
-    if (error) throw error;
-    return data;
-}
-
-/*function handleFileUpload() {
-    const fileInput = document.getElementById('excelFile');
-    const messageDiv = document.getElementById('upload-message');
-    
-    if (!fileInput.files.length) {
-        alert("Please select an Excel file");
-        return;
-    }
-    
-    messageDiv.innerHTML = '<div class="loading-spinner">Uploading and processing file...</div>';
-    
-    const tableName = localStorage.getItem('tableName');
-
-    const sentData = {target_table: tableName, excelFile: fileInput.files[0] };
-
-    console.log(sentData);
-
-    fetchData("update_table", displayInventoryTable, sentData);
-    
-}*/
